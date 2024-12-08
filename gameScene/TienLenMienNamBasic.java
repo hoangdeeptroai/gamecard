@@ -1,7 +1,5 @@
 package gameScene;
 
-//import javax.smartcardio.Card;
-
 import gameLogic.TienLenMienNam;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -11,6 +9,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import module.Card;
 import module.CardofTienLen;
 
 public class TienLenMienNamBasic {
@@ -76,7 +75,7 @@ public class TienLenMienNamBasic {
 
 				// Hiển thị text của các lá bài đã chọn
 				StringBuilder selectedCardsText = new StringBuilder();
-				for (CardofTienLen card : tienLenMienNam.getSelectionCard().getCards()) {
+				for (Card card : tienLenMienNam.getSelectionCard().getCards()) {
 					selectedCardsText.append(card.toString()).append(", ");
 				}
 				if (selectedCardsText.length() > 0) {

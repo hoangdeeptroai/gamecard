@@ -365,7 +365,20 @@ public class TienLenMienNam {
 			player.get(i).setPlayerState(PlayerState.TRONG_VONG);
 		}
 		this.newMotherPack();
-		this.dealCard();
+		List<Player> clone = new ArrayList<>();
+		// chia lai bai
+		for (int i = 0; i < numOfPlayer; i++) {
+			Player playerTemp = player.get(i);
+			playerTemp.getCards().clear();
+			for (int j = 0; j < 13; j++) {
+				playerTemp.addCard(motherPack.removeCard(0));
+			}
+			playerTemp.sortDeck();
+			clone.add(playerTemp);
+		}
+
+		player.clear();
+		player = clone;
 		this.informationPlayer();
 		this.round = 0;
 		this.nowPlayer = 0;
@@ -377,8 +390,9 @@ public class TienLenMienNam {
 	public String rankToString() {
 		String temp = new String();
 		for (int i = 0; i < rank.size(); i++) {
-			temp += rank.get(i) + " ";
+			temp += "(" + (i + 1) + ")" + player.get(rank.get(i) - 1).getPlayerName() + " ==> ";
 		}
+		temp = temp.substring(0, temp.length() - 5);
 		return temp;
 	}
 

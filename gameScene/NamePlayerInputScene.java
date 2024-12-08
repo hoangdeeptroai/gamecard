@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import soundEffect.ClickSound;
 
 public class NamePlayerInputScene {
+	// k = (0/1) chọn kiểu đồ họa game
 	public static void create(Stage primaryStage, int numPlayers, int numAi, int k) {
 		TienLenMienNam tienLenMienNam = new TienLenMienNam(numPlayers, numAi);
 		VBox root = new VBox(10);
@@ -22,8 +23,8 @@ public class NamePlayerInputScene {
 		label.setStyle("-fx-font-size: 18px; -fx-text-fill: white;");
 
 		// Các trường nhập tên người chơi
-		TextField[] playerNameFields = new TextField[numPlayers];
-		for (int i = 0; i < numPlayers; i++) {
+		TextField[] playerNameFields = new TextField[numPlayers - numAi];
+		for (int i = 0; i < numPlayers - numAi; i++) {
 			playerNameFields[i] = new TextField();
 			playerNameFields[i].setMaxWidth(200);
 			playerNameFields[i].setPromptText("Tên người chơi " + (i + 1));
@@ -35,7 +36,7 @@ public class NamePlayerInputScene {
 		startGameButton.setOnAction(e -> {
 			ClickSound.play();
 			// Kiểm tra tên người chơi
-			for (int i = 0; i < numPlayers; i++) {
+			for (int i = 0; i < numPlayers - numAi; i++) {
 				if (playerNameFields[i].getText().isEmpty()) {
 					playerNameFields[i].setStyle("-fx-border-color: red;");
 					return; // Không tiếp tục nếu tên không hợp lệ
@@ -49,7 +50,7 @@ public class NamePlayerInputScene {
 				Scene gameSceneObject = gameScene.createScene(); // Sử dụng GameScene để tạo gameScene
 				primaryStage.setScene(gameSceneObject);
 			} else {
-				TienLenMienNamBasic gameScene = new TienLenMienNamBasic(tienLenMienNam, primaryStage);
+				TienLenMienNamBasicv2 gameScene = new TienLenMienNamBasicv2(tienLenMienNam, primaryStage);
 				Scene gameSceneObject = gameScene.createScene(); // Sử dụng GameScene để tạo gameScene
 				primaryStage.setScene(gameSceneObject);
 			}

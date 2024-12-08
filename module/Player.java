@@ -19,7 +19,7 @@ public class Player extends Deck {
 
 	// Các thuộc tính của người chơi như Trạng thái, tên, STT, và số dư
 	private PlayerState playerState;
-	private String playerName;
+	protected String playerName;
 	private int playerNum;
 	private int playerRank;
 
